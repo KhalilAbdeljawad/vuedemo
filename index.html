@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Vue.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+
+
+        .bar {
+            list-style: none;
+        }
+
+        .bar > li {
+            position: relative;
+        }
+
+        .bar > li:before {
+            content: '\25CF';
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .bar > li:after {
+            position: absolute;
+            left: 0;
+            top: 0;
+            content: '';
+            border-left: 2px solid black;
+            margin-left: 5px;
+            height: 100%;
+        }
+
+        .bar > li:first-of-type:after {
+            top: 17%;
+        }
+
+        .bar > li:last-of-type:after {
+            top: -20%;
+        }
+    </style>
+</head>
+<body>
+<div id="app" class="container">
+
+
+    <div>
+        <vheader></vheader>
+
+        <vwork v-if="this.$root.$data.view==1"></vwork>
+        <veducation v-if="this.$root.$data.view==2"></veducation>
+        <vportfolio v-if="this.$root.$data.view==3"></vportfolio>
+
+
+    </div>
+</div>
+</body>
+<script>
+
+
+    Vue.component('vheader', {
+        inherit: true,
+        template: `<div id="header" v-bind:style="header">
+            <div class="row">
+                <div class="col first-row"><img v-bind:style="picture" src="images/facce.png"></div>
+                <div class="col ">
+                    <div class="row">
+                        <div class="col"><img v-bind:style="cloud" src="images/cloud.png"/></div>
+                    </div>
+                    <div class="row" v-bind:style="name">
+                        <div class="col">Rebecca</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">UI&UX Designer</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button>Tab To Chat</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row" v-bind:style="firstRow">
+                        <div class="col">Your Interviews:</div>
+                    </div>
+
+                    <div class="row" v-bind:style="bold, pad">
+                        <div class="col">10$</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Hourly rate</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row" v-bind:style="firstRow">
+                        <div class="col"><img v-bind:style="img" src="images/speaker.png"/> Upload Audio</div>
+                    </div>
+
+                    <div class="row"  v-bind:style="bold, pad">
+                        <div class="col">35 hours</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Weekly Availability</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row" v-bind:style="firstRow">
+                        <div class="col"><img v-bind:style="img" src="images/play-button.png"/> Upload Video</div>
+                    </div>
+                    <div class="row" v-bind:style="pad">
+                        <div class="col">
+                            <button>Tab To Chat</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col">
+                    <img v-bind:style="img" src="images/tree-1.png">
+                </div>
+                <div class="col"></div>
+
+                <div class="col"><hr style="border: solid 1px"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"><hr style="border: solid 1px;width: 20px"></div>
+                <div class="col">
+                    <img v-bind:style="img" src="images/tree-1.png">
+                </div>
+            </div>
+<div class="row">
+            <div class="col" style="height: 20px;margin: -22px;">
+                <hr v-bind:style="hr">
+
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px">
+            <div style="cursor: pointer" class="col" @click="fun(3)">Portfolio <img src="images/website.png" v-bind:style="img"></div>
+            <div style="cursor: pointer" class="col" @click="fun(1)">Work <img src="images/porfolio.png" v-bind:style="img"></div>
+            <div style="cursor: pointer" class="col" @click="fun(2)">Education <img src="images/mortarboard.png" v-bind:style="img"/></div>
+        </div>
+        <div class="row" style="margin-top: 30px">
+            <div class="col">Programming Languages</div>
+            <div class="col">Frameworks/Databases</div>
+            <div class="col">Design Skills</div>
+            <div class="col">Software</div>
+
+        </div>
+
+        <div class="row" style="margin-top: 30px;margin-bottom: 50px">
+            <div class="col"></div>
+            <div class="col"><img src="images/illustrator.png" v-bind:style="img"></div>
+            <div class="col"><img src="images/after-effects.png" v-bind:style="img"></div>
+            <div class="col"><img src="images/experience.png" v-bind:style="img"></div>
+            <div class="col"><img src="images/premier-1.png" v-bind:style="img"></div>
+            <div class="col"></div>
+        </div>
+
+
+    </div>`,
+        data: function () {
+            return {
+                header: {
+                    width: '1000px',
+                    textAlign: 'center'
+                },
+                cloud: {
+                    marginTop: '30px',
+                    width: '50px'
+                },
+                picture: {
+                    width: '150px'
+                },
+                name: {
+                    fontSize: '23px',
+                    fontWeight: 'bolder'
+                }, button: {
+                    backgroundColor: 'white',
+                    borderRadius: '10px'
+                },
+                bold:
+                    {
+                        fontWeight: 'bolder'
+                    },
+                hidden:
+                    {
+                        color: 'white'
+                    },
+                pad:
+                    {
+                        marginTop: '50px'
+                    },
+                hr:
+                    {
+
+                        marginLeft: '5px',
+                        backgroundColor: 'black',
+                        width: '100%',
+                        border: 'solid 2px black',
+                    },
+                firstRow: {
+                    marginTop: '40px'
+                },
+
+                row: {
+                    marginBottom: '5px'
+                },
+
+                img: {
+                    width: '30px'
+                }
+            }
+        },
+        methods: {
+            fun: function (n) {
+                this.$parent.$data.view = n
+            }
+        },
+        computed: {}
+    })
+
+    Vue.component('vwork', {
+        template: `<div id="body" style="margin-top: 10px; margin-left: 50px;background-image: url('images/porfolio-5.png');background-size: 350px;background-position: right 260px center;background-repeat: no-repeat">
+            <div class="row">
+                <div class="col"><h1>Work</h1></div>
+                <div class="col"></div>
+                <div class="col"><img src="images/porfolio-1.png"/></div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    <ul>
+                        <h3>
+                            <li style="list-style-type: circle">Senior UI&UX Designer</li>
+                        </h3>
+                        May 2018 - Jul 2018
+                        <br>
+                        <div style="text-align: justify; width: 70%">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                            gubergren, no sea takimata Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                        </div>
+                    </ul>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    <ul>
+                        <h3>
+                            <li style="list-style-type: circle">Senior UI&UX Designer</li>
+                        </h3>GuestFix<br>
+                        May 2018 - Jul 2018
+                        <br>
+                        <div style="text-align: justify; width: 70%">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                            gubergren, no sea takimata Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                        </div>
+                    </ul>
+                    </h3>
+                </div>
+            </div>
+
+        </div>`
+    })
+    Vue.component('veducation', {
+        template: `<div id="education" style="margin-top: 10px; margin-left: 50px;background-image: url('images/porfolio-5.png');background-size: 350px;background-position: right 260px center;background-repeat: no-repeat">
+            <div class="row">
+                <div class="col"><h1>Education</h1></div>
+                <div class="col"></div>
+                <div class="col"><img src="images/mortarboard-1.png"/></div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    <ul class="bar">
+                        <li>
+                            2014&2017
+                            <div  style="padding-left: 25px">
+                            <h5>Universidad Autonoma De Carriole</h5>
+                            Computer Science
+                            </div><br>
+                        </li>
+                        <li>
+                            2018 - Now
+                            <div  style="padding-left: 25px">
+                                <h5>Havard University</h5>
+                                Studied Computer Information Technology at the  University of Shkoda
+                            </div><br>
+                        </li>
+                        <li>
+                            2018
+                            <div  style="padding-left: 25px; width: 70%;text-align: justify">
+                                <h5>Udemy</h5>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.
+                            </div><br><br>
+                        </li>
+                    </ul>
+                    </h3>
+                </div>
+            </div>
+
+
+
+        </div>`
+    })
+    Vue.component('vportfolio', {
+        template: `<div id="portfolio" style="margin-top: 10px; margin-left: 50px;background-image: url('images/porfolio-5.png');background-size: 350px;background-position: right 260px center;background-repeat: no-repeat">
+            <div class="row">
+                <div class="col"><h1>Portfolio</h1></div>
+                <div class="col"></div>
+                <div class="col"><img src="images/website-1.png"/></div>
+            </div>
+            <div class="row">
+               <div class="col" style=" margin-right: -70px">
+                   <img src="images/banana.png" />
+               </div>
+                <div class="col" style="text-align: left">
+                    <img style="width: 300px;height: 300px" src="images/6278fd6689b636d69a4dbbb4e143ddfd.png" />
+                </div>
+            </div>
+        </div>`
+    })
+    const vue = new Vue({
+        el: "#app",
+        data: {
+            view: 1
+        },
+        methods: {
+            fun: function () {
+                alert(9)
+            },
+            a: function () {
+
+            }
+
+        }
+
+
+    })
+</script>
+</html>
